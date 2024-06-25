@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('annee_de_naissance');
             $table->string('departement');
             $table->foreignIdFor(Demandeur::class);
+            $table->string('status');
 
             $table->timestamps();
         });

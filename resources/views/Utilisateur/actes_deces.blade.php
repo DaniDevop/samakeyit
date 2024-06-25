@@ -47,6 +47,8 @@ body {font-family: "Lato", sans-serif;}
 <body>
 
 <div class="sidebar">
+<a href="{{route('menu.users')}}"><i class="fa fa-fw fa-home"></i> Acceuil</a>
+
 <a href="{{route('acte_naissance.users')}}"><i class="fa fa-fw fa-home"></i> Demande d'acte de naissance</a>
   <a href="{{route('acte_mariage.users')}}"><i class="fa fa-fw fa-wrench"></i> Acte de mariage</a>
   <a href="{{route('actes_deces.users')}}"><i class="fa fa-fw fa-user"></i> Acte de décès</a>
@@ -56,32 +58,42 @@ body {font-family: "Lato", sans-serif;}
 <div class="main">
 
   <div class="container">
-        <h1>Formulaire Acte de Naissance</h1>
-        <button id="afficherFormulaire">Acte de Naissance</button>
-        <form id="acteDecesForm" onsubmit="processPayment(event)">
+        <h1>Formulaire Acte de décès</h1>
+
+        @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li style="color: red;">{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+        <form id="acteDecesForm" action="{{route('demande.ActeDeces')}}" method="POST">
       <div>
+        @csrf
         <label for="numero_registre">Numéro du registre :</label><br>
-        <input type="text" id="numero_registre" name="numero_registre" required>
+        <input type="text" id="numero_registre" name="numero_registre" >
       </div><br>
 
       <div>
         <label for="centre">Centre :</label><br>
-        <input type="text" id="centre" name="centre" required>
+        <input type="text" id="centre" name="centre" >
       </div><br>
 
       <div>
         <label for="date_deces">Date du décès :</label><br>
-        <input type="date" id="date_deces" name="date_deces" required>
+        <input type="date" id="date_deces" name="date_deces" >
       </div><br>
 
       <div>
         <label for="lieu_deces">Lieu du décès :</label><br>
-        <input type="text" id="lieu_deces" name="lieu_deces" required>
+        <input type="text" id="lieu_deces" name="lieu_deces" >
       </div><br>
 
       <div>
         <label for="sexe">Sexe :</label><br>
-        <select id="sexe" name="sexe" required>
+        <select id="sexe" name="sexe" >
           <option value="homme">Homme</option>
           <option value="femme">Femme</option>
         </select>
@@ -89,62 +101,26 @@ body {font-family: "Lato", sans-serif;}
 
       <div>
         <label for="date_naissance">Date de naissance du défunt(e) :</label><br>
-        <input type="date" id="date_naissance" name="date_naissance" required>
+        <input type="date" id="date_naissance" name="date_naissance" >
       </div><br>
 
       <div>
         <label for="nom_pere">Nom du père du défunt(e) :</label><br>
-        <input type="text" id="nom_pere" name="nom_pere" required>
+        <input type="text" id="nom_pere" name="nom_pere" >
       </div><br>
 
       <div>
         <label for="nom_mere">Nom de la mère du défunt(e) :</label><br>
-        <input type="text" id="nom_mere" name="nom_mere" required>
+        <input type="text" id="nom_mere" name="nom_mere" >
       </div><br>
+      <input type="hidden" id="nom_mere" name="id"  value="{{$users[0]->id}}">
 
       <input type="submit" value="Soumettre">
     </form>
         <div id="message" style="display: none;"></div>
     </div>
 
-    <script>
-    function processPayment(event) {
-      event.preventDefault(); // Empêcher la soumission normale du formulaire
 
-      // Récupérer les données du formulaire
-      const formData = new FormData(document.getElementById('acteDecesForm'));
-      const data = {};
-      formData.forEach((value, key) => {
-        data[key] = value;
-      });
-
-      // Exemple d'appel à l'API Orange Money (simulé)
-      const paymentDetails = {
-        amount: 100.00,
-        recipient: 'NUMERO_DU_DESTINATAIRE', // Remplacez par le numéro du destinataire réel
-        description: 'Paiement pour l\'acte de décès',
-      };
-
-      // Remplacez ce bloc par l'appel réel à l'API Orange Money avec fetch ou axios
-      fetch('https://www.bing.com/search?q=api+orange+money&form=ANSPH1&refig=e5e8e80e67ea4410bc09e64973d18d9a&pc=U531&pqasv=api+orange+money&pqlth=16&assgl=16&sgcn=api+orange+money&sgtpv=CT&swbcn=7&smvpcn=0&cvid=e5e8e80e67ea4410bc09e64973d18d9a&clckatsg=1&hsmssg=0#', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          // Ajoutez les en-têtes nécessaires comme l'authentification
-        },
-        body: JSON.stringify(paymentDetails),
-      })
-      .then(response => response.json())
-      .then(data => {
-        alert('Paiement effectué avec succès.'); // Message de succès
-        document.getElementById('acteDecesForm').reset(); // Réinitialiser le formulaire
-      })
-      .catch(error => {
-        console.error('Erreur lors du paiement:', error);
-        alert('Erreur lors du paiement. Veuillez réessayer.'); // Message d'erreur
-      });
-    }
-  </script>
     </div>
 
 </body>

@@ -47,6 +47,7 @@ body {font-family: "Lato", sans-serif;}
 <body>
 
 <div class="sidebar">
+<a href="{{route('menu.users')}}"><i class="fa fa-fw fa-home"></i> Acceuil</a>
   <a href="{{route('acte_naissance.users')}}"><i class="fa fa-fw fa-home"></i> Demande d'acte de naissance</a>
   <a href="{{route('acte_mariage.users')}}"><i class="fa fa-fw fa-wrench"></i> Acte de mariage</a>
   <a href="{{route('actes_deces.users')}}"><i class="fa fa-fw fa-user"></i> Acte de décès</a>
@@ -117,7 +118,7 @@ body {font-family: "Lato", sans-serif;}
         <div id="message" style="display: none;"></div>
     </div>
 
-   
+
     </div>
 
 </body>

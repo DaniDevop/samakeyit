@@ -12,18 +12,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('demande_mariages', function (Blueprint $table) {
+        Schema::create('demande_deces_models', function (Blueprint $table) {
             $table->id();
-            $table->string('numero_registre_mariage');
+            $table->string('date_naissance');
+            $table->string('nom_pere');
+            $table->string('nom_mere');
+            $table->string('numero_registre');
             $table->string('centre');
-            $table->string('date_mariage');
-            $table->string('lieu_mariage');
-            $table->string('date_naissance_marie');
-            $table->string('date_naissance_mariee');
-            $table->string('regime_matrimonial');
-            $table->string('polygamie_monogamie');
+            $table->string('date_deces');
+            $table->string('lieu_deces');
             $table->string('status');
 
+            $table->string('sexe');
             $table->foreignIdFor(Demandeur::class);
 
             $table->timestamps();
@@ -35,6 +35,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('demande_mariages');
+        Schema::dropIfExists('demande_deces_models');
     }
 };

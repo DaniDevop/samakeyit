@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\DemandeActeNaissance;
+use App\Http\Requests\DemandeDecesRequest;
 use App\Http\Requests\DemandeDeurRequest;
 use App\Http\Requests\DemandeMariageRequest;
 use App\Models\DemandeActeNaissance as ModelsDemandeActeNaissance;
+use App\Models\DemandeDecesModel;
 use App\Models\DemandeMariage;
 use App\Models\Demandeur;
 use Illuminate\Http\Request;
@@ -51,11 +53,24 @@ class UtilisateurController extends Controller
     }
 
     public function acte_de_deces(){
-        return view('Utilisateur.actes_deces');
+        $users = session()->get('users');
+        return view('Utilisateur.actes_deces',[
+            'users'=> $users
+        ]);
 
     }
     public function menu(){
-        return view('Utilisateur.menu');
+        $users =session()->get('users');
+        $ModelsDemandeActeNaissance = ModelsDemandeActeNaissance::where('demandeur_id', $users[0]->id)->get();
+        $DemandeDecesModel =  DemandeDecesModel::where('demandeur_id', $users[0]->id)->get();
+        $DemandeMariage =  DemandeMariage::where('demandeur_id', $users[0]->id)->get();
+
+        return view('Utilisateur.menu',[
+               'users'=>$users,
+               'ModelsDemandeActeNaissance'=>$ModelsDemandeActeNaissance,
+               'DemandeDecesModel'=>$DemandeDecesModel,
+               'DemandeMariage'=>$DemandeMariage
+        ]);
 
     }
 
@@ -134,9 +149,11 @@ class UtilisateurController extends Controller
         $demande->nom_mere=$demandeActeNaissance->nom_mere;
         $demande->departement=$demandeActeNaissance->departement;
 
-        $demande->numero_registre=$demandeActeNaissance->numero_registre;
+        $demande->numero_registe=$demandeActeNaissance->numero_registre;
         $demande->annee_de_naissance=$demandeActeNaissance->annee_de_naissance;
         $demande->demandeur_id=$demandeActeNaissance->id;
+        $demande->status='En-cours';
+
         $demande->save();
         toastr()->info('Votre demande à été envoyé consulter vos messages !');
         return back();
@@ -164,6 +181,39 @@ class UtilisateurController extends Controller
         $demande->polygamie_monogamie=$demandeActeNaissance->polygamie_monogamie;
 
         $demande->demandeur_id=$demandeActeNaissance->id;
+        $demande->status='En-cours';
+
+        $demande->save();
+        toastr()->info('Votre demande à été envoyé consulter vos messages !');
+        return back();
+    }
+
+
+    public function demandeActeDeces(DemandeDecesRequest $demandeActeNaissance){
+
+        $todayCount = DemandeDecesModel::where('demandeur_id', $demandeActeNaissance->id)
+        ->whereDate('created_at', date('Y-m-d'))
+        ->count();
+
+    if ($todayCount > 0) {
+        toastr()->warning('Vous avez déjà une demande en cours ');
+        return back();
+    }
+        $demande=new  DemandeDecesModel();
+        $demande->numero_registre=$demandeActeNaissance->numero_registre;
+        $demande->centre=$demandeActeNaissance->centre;
+        $demande->date_naissance=$demandeActeNaissance->date_naissance;
+
+        $demande->lieu_deces=$demandeActeNaissance->lieu_deces;
+        $demande->sexe=$demandeActeNaissance->sexe;
+        $demande->nom_mere=$demandeActeNaissance->nom_mere;
+        $demande->nom_pere=$demandeActeNaissance->nom_pere;
+
+        $demande->date_deces=$demandeActeNaissance->date_deces;
+
+        $demande->demandeur_id=$demandeActeNaissance->id;
+        $demande->status='En-cours';
+
         $demande->save();
         toastr()->info('Votre demande à été envoyé consulter vos messages !');
         return back();

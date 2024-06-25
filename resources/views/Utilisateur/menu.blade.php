@@ -46,18 +46,107 @@ body {font-family: "Lato", sans-serif;}
 <body>
 
 <div class="sidebar">
+<a href="{{route('menu.users')}}"><i class="fa fa-fw fa-home"></i> Acceuil</a>
+
 <a href="{{route('acte_naissance.users')}}"><i class="fa fa-fw fa-home"></i> Demande d'acte de naissance</a>
   <a href="{{route('acte_mariage.users')}}"><i class="fa fa-fw fa-wrench"></i> Acte de mariage</a>
   <a href="{{route('actes_deces.users')}}"><i class="fa fa-fw fa-user"></i> Acte de décès</a>
   <a href="{{route('deconnection.users')}} "><i class="fa fa-fw fa-envelope"></i> Déconnexion</a>
 </div>
 
+
 <div class="main">
-  <h2>Sidebar with Icons</h2>
-  <p>This side navigation is of full height (100%) and always shown.</p>
-  <p>Lorem ipsum dolor sit amet, illum definitiones no quo, maluisset concludaturque et eum, altera fabulas ut quo. Atqui causae gloriatur ius te, id agam omnis evertitur eum. Affert laboramus repudiandae nec et. Inciderint efficiantur his ad. Eum no molestiae voluptatibus.</p>
-  <p>Lorem ipsum dolor sit amet, illum definitiones no quo, maluisset concludaturque et eum, altera fabulas ut quo. Atqui causae gloriatur ius te, id agam omnis evertitur eum. Affert laboramus repudiandae nec et. Inciderint efficiantur his ad. Eum no molestiae voluptatibus.</p>
+  <h4>Demande d acte de naissance </h4>
+  <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">numéro-registre</th>
+      <th scope="col">nom_pere</th>
+      <th scope="col">nom_mere</th>
+      <th scope="col">nannee_de_naissance</th>
+      <th scope="col">Status</th>
+      <th scope="col">Details</th>
+    </tr>
+  </thead>
+  <tbody>
+    @foreach($ModelsDemandeActeNaissance as $Models)
+    <tr>
+      <th scope="row"> {{$Models->numero_registe}} </th>
+      <td>{{$Models->nom_pere}}</td>
+      <td>{{$Models->nom_mere}}</td>
+      <td>{{$Models->annee_de_naissance}}</td>
+      <td>{{$Models->status}}</td>
+      <td> <a href="#" class="btn btn-info"><i class="bi bi-eye"></i></a> </td>
+    </tr>
+     @endforeach
+  </tbody>
+</table>
 </div>
 
+
+<div class="main">
+  <h4>Demande d acte de deces</h4>
+  <table class="table">
+  <thead>
+    <tr>
+    <th scope="col">Numéro-registre</th>
+      <th scope="col">Nom-pere</th>
+      <th scope="col">Nom de la mère</th>
+      <th scope="col">Date-du-décès</th>
+      <th scope="col">Lieu-du-décès</th>
+      <th scope="col">Status</th>
+      <th scope="col">Details</th>
+    </tr>
+  </thead>
+  <tbody>
+  @foreach( $DemandeDecesModel as  $DecesModel)
+
+    <tr>
+    <th > {{$DecesModel->numero_registre}}  </th>
+
+      <th scope="row"> {{$DecesModel->date_naissance}}  </th>
+      <td>{{$DecesModel->nom_pere}}</td>
+      <td>{{$DecesModel->nom_mere}}</td>
+      <td>{{$DecesModel->date_deces}}</td>
+      <td>{{$DecesModel->lieu_deces}}</td>
+      <td>{{$DecesModel->status}}</td>
+
+      <td> <a href="#" class="btn btn-info"><i class="bi bi-eye"></i></a> </td>
+    </tr>
+    @endforeach
+
+  </tbody>
+</table>
+</div>
+
+<div class="main">
+  <h4>Demande d acte de Mariage </h4>
+  <table class="table">
+  <thead>
+    <tr>
+    <th scope="col">Numéro-registre</th>
+      <th scope="col">Centre</th>
+      <th scope="col">Date</th>
+      <th scope="col">Lieu</th>
+      <th scope="col">Regime</th>
+      <th scope="col">Status</th>
+      <th scope="col">Details</th>
+    </tr>
+  </thead>
+  <tbody>
+
+  @foreach(   $DemandeMariage as $Demande  )
+    <tr>
+      <th scope="row"> {{$Demande->numero_registre_mariage}} </th>
+      <td colspan="2">{{$Demande->centre}}</td>
+      <td>{{$Demande->date_mariage}}</td>
+      <td>{{$Demande->regime_matrimonial}}</td>
+      <td>{{$Demande->status}}</td>
+      <td> <a href="#" class="btn btn-info"><i class="bi bi-eye"></i></a> </td>
+    </tr>
+    @endforeach
+  </tbody>
+</table>
+</div>
 </body>
 </html>

@@ -34,5 +34,6 @@ Route::middleware(['auth.user'])->group(function () {
     Route::get('/deconnection_users',[UtilisateurController::class,'deconnection'])->name('deconnection.users');
     Route::post('/demande_acte_naissance',[UtilisateurController::class,'demandeActeNaissace'])->name('demande.ActeNaissace');
     Route::post('/demande_acte_mariage',[UtilisateurController::class,'demandeActeMariage'])->name('demande.ActeMariage');
+    Route::post('/demande_acte_deces',[UtilisateurController::class,'demandeActeDeces'])->name('demande.ActeDeces');
 
 });
