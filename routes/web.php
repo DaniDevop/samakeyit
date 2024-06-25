@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UtilisateurController;
 use Illuminate\Support\Facades\Route;
 
@@ -24,6 +25,9 @@ Route::post('/add_users_account',[UtilisateurController::class,'store'])->name('
 Route::post('/login-users',[UtilisateurController::class,'loginUsers'])->name('login.Users');
 Route::get('/',[UtilisateurController::class,'home'])->name('home.users');
 
+// Users Controlles
+
+Route::get('/admin',[AdminController::class,'index'])->name('home.admin');
 
 Route::middleware(['auth.user'])->group(function () {
 
