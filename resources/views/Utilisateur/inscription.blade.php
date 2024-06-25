@@ -10,9 +10,22 @@
 <body>
     <div class="container">
         <h1>Inscription</h1>
-        <form>
-            <label for="nom_prenom">Nom et Prénom:</label>
-            <input type="text" id="nom_prenom" name="nom_prenom" required><br><br>
+        @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li style="color: red;">{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+        <form action="{{route('store.users')}}" method="POST">
+            @csrf
+            <label for="nom_prenom">Nom</label>
+            <input type="text" id="nom_prenom" name="nom" required><br><br>
+
+            <label for="nom_prenom">Prénom:</label>
+            <input type="text" id="nom_prenom" name="prenom" required><br><br>
 
             <label for="email">Email:</label>
             <input type="email" id="email" name="email" required><br><br>
@@ -21,10 +34,13 @@
             <input type="text" id="num_carte_id" name="num_carte_id" required><br><br>
 
             <label for="num_telephone">Numéro de téléphone:</label>
-            <input type="tel" id="num_telephone" name="num_telephone" required><br><br>
+            <input type="tel" id="num_telephone" name="tel" required><br><br>
 
             <label for="mot_de_passe">Mot de passe:</label>
-            <input type="password" id="mot_de_passe" name="mot_de_passe" required><br><br>
+            <input type="password" id="mot_de_passe" name="password" required><br><br>
+
+            <label for="mot_de_passe">Confirmation-Mot de passe:</label>
+            <input type="password" id="confirm_password" name="password_confirm" required><br><br>
 
             <button type="submit">Terminer</button>
         </form>
