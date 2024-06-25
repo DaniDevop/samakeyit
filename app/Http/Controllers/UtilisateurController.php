@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\DemandeActeNaissance;
 use App\Http\Requests\DemandeDeurRequest;
+use App\Models\DemandeActeNaissance as ModelsDemandeActeNaissance;
 use App\Models\Demandeur;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -29,7 +31,10 @@ class UtilisateurController extends Controller
     }
 
     public function acte_naissance(){
-        return view('Utilisateur.acte_naissance');
+        $users = session()->get('users');
+        return view('Utilisateur.acte_naissance',[
+            'users'=> $users
+        ]);
 
     }
 
@@ -105,5 +110,29 @@ class UtilisateurController extends Controller
 
         return redirect()->route('login.users');
 
+    }
+
+
+    public function demandeActeNaissace(DemandeActeNaissance $demandeActeNaissance){
+
+        $todayCount = ModelsDemandeActeNaissance::where('demandeur_id', $demandeActeNaissance->id)
+        ->whereDate('created_at', date('Y-m-d'))
+        ->count();
+
+    if ($todayCount > 0) {
+        toastr()->warning('Vous avez déjà une demande en cours ');
+        return back();
+    }
+        $demande=new ModelsDemandeActeNaissance();
+        $demande->nom_pere=$demandeActeNaissance->nom_pere;
+        $demande->nom_mere=$demandeActeNaissance->nom_mere;
+        $demande->departement=$demandeActeNaissance->departement;
+
+        $demande->numero_registre=$demandeActeNaissance->numero_registre;
+        $demande->annee_de_naissance=$demandeActeNaissance->annee_de_naissance;
+        $demande->demandeur_id=$demandeActeNaissance->id;
+        $demande->save();
+        toastr()->info('Votre demande à été envoyé consulter vos messages !');
+        return back();
     }
 }

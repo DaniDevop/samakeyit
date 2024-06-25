@@ -55,57 +55,43 @@ body {font-family: "Lato", sans-serif;}
 <div class="main">
 
   <div class="container">
-        <h1>Formulaire Acte de Naissance</h1>
-        <button id="afficherFormulaire">Acte de Naissance</button>
-        <form id="acteNaissanceForm" style="display: none;">
+        <h1>Formulaire Acte de Naissance    </h1>
+        @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li style="color: red;">{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+        <form  action="{{route('demande.ActeNaissace')}}" method="POST">
+            @csrf
             <label for="numeroRegistre">Numéro de registre:</label><br>
-            <input type="text" id="numeroRegistre" name="numeroRegistre"><br>
+            <input type="text" id="numeroRegistre" name="numero_registre"><br>
 
             <label for="nomPrenomPere">Nom et prénom du père:</label><br>
-            <input type="text" id="nomPrenomPere" name="nomPrenomPere"><br>
+            <input type="text" id="nomPrenomPere" name="nom_pere"><br>
 
-            <label for="nomPrenomMere">Nom et prénom de la mère:</label><br>
-            <input type="text" id="nomPrenomMere" name="nomPrenomMere"><br>
+
+            <label for="nomPrenomPere">Nom et prénom de la mère:</label><br>
+            <input type="text" id="nomPrenomPere" name="nom_mere"><br>
 
             <label for="anneeNaissance">Année de naissance:</label><br>
-            <input type="text" id="anneeNaissance" name="anneeNaissance"><br>
+            <input type="date" id="anneeNaissance" name="annee_de_naissance"><br>
 
             <label for="nomDepartement">Nom de votre département:</label><br>
-            <input type="text" id="nomDepartement" name="nomDepartement"><br>
+            <input type="text" id="nomDepartement" name="departement"><br>
+
+            <input type="hidden" name="id" value="{{ $users[0]->id}}">
 
             <input type="submit" value="Envoyer">
         </form>
         <div id="message" style="display: none;"></div>
     </div>
 
-    <script>
-        document.getElementById("afficherFormulaire").addEventListener("click", function() {
-            document.getElementById("acteNaissanceForm").style.display = "block";
-        });
 
-        document.getElementById("acteNaissanceForm").addEventListener("submit", function(event) {
-            event.preventDefault(); // Empêche la soumission par défaut du formulaire
-
-            // Récupérer les valeurs des champs
-            var numeroRegistre = document.getElementById("numeroRegistre").value;
-            var nomPrenomPere = document.getElementById("nomPrenomPere").value;
-            var nomPrenomMere = document.getElementById("nomPrenomMere").value;
-            var anneeNaissance = document.getElementById("anneeNaissance").value;
-            var nomDepartement = document.getElementById("nomDepartement").value;
-
-            // Afficher le message
-            var message = document.getElementById("message");
-            message.innerHTML = "Votre demande a été envoyée avec succès.";
-            message.style.display = "block";
-
-            // Réinitialiser le formulaire après 2 secondes
-            setTimeout(function() {
-                document.getElementById("acteNaissanceForm").reset();
-                message.style.display = "none";
-                document.getElementById("acteNaissanceForm").style.display = "none";
-            }, 2000);
-        });
-    </script></div>
+    </div>
 
 </body>
 </html>
