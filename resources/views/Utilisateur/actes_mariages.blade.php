@@ -56,69 +56,68 @@ body {font-family: "Lato", sans-serif;}
 <div class="main">
 
   <div class="container">
-        <h1>Formulaire Acte de Naissance</h1>
-        <button id="afficherFormulaire">Acte de Naissance</button>
-        <form id="acteNaissanceForm" action="traitement.php" method="POST">
+        <h1>Formulaire Acte de mariage</h1>
+        @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li style="color: red;">{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+        <form id="acteNaissanceForm" action="{{route('demande.ActeMariage')}}" method="POST">
+            @csrf
       <div>
         <label for="numero_registre_mariage">Numéro du registre de mariage :</label><br>
-        <input type="text" id="numero_registre_mariage" name="numero_registre_mariage" required>
+        <input type="text" id="numero_registre_mariage" name="numero_registre_mariage" >
       </div><br>
 
       <div>
         <label for="centre">Centre :</label><br>
-        <input type="text" id="centre" name="centre" required>
+        <input type="text" id="centre" name="centre" >
       </div><br>
 
       <div>
         <label for="date_mariage">Date du mariage :</label><br>
-        <input type="date" id="date_mariage" name="date_mariage" required>
+        <input type="date" id="date_mariage" name="date_mariage" >
       </div><br>
 
       <div>
         <label for="lieu_mariage">Lieu du mariage :</label><br>
-        <input type="text" id="lieu_mariage" name="lieu_mariage" required>
+        <input type="text" id="lieu_mariage" name="lieu_mariage" >
       </div><br>
 
       <div>
         <label for="date_naissance_marie">Date de naissance du marié :</label><br>
-        <input type="date" id="date_naissance_marie" name="date_naissance_marie" required>
+        <input type="date" id="date_naissance_marie" name="date_naissance_marie" >
       </div><br>
 
       <div>
         <label for="date_naissance_mariee">Date de naissance de la mariée :</label><br>
-        <input type="date" id="date_naissance_mariee" name="date_naissance_mariee" required>
+        <input type="date" id="date_naissance_mariee" name="date_naissance_mariee" >
       </div><br>
 
       <div>
         <label for="regime_matrimonial">Régime matrimonial :</label><br>
-        <input type="text" id="regime_matrimonial" name="regime_matrimonial" required>
+        <input type="text" id="regime_matrimonial" name="regime_matrimonial" >
       </div><br>
 
       <div>
         <label for="polygamie_monogamie">Polygamie ou monogamie :</label><br>
-        <select id="polygamie_monogamie" name="polygamie_monogamie" required>
+        <select id="polygamie_monogamie" name="polygamie_monogamie" >
           <option value="monogamie">Monogamie</option>
           <option value="polygamie">Polygamie</option>
         </select>
       </div><br>
+      <input type="hidden" id="regime_matrimonial" name="id" value="{{$users[0]->id}}" >
 
       <input type="submit" value="Soumettre">
     </form>
         <div id="message" style="display: none;"></div>
     </div>
 
-    <script>
-    // Réagir à la soumission du formulaire
-    document.getElementById('acteNaissanceForm').addEventListener('submit', function(event) {
-      event.preventDefault(); // Empêcher la soumission normale du formulaire
-
-      // Afficher un message de succès
-      alert('Votre demande a été transmise avec succès.');
-
-      // Réinitialiser le formulaire
-      this.reset();
-    });
-  </script>
+   
     </div>
 
 </body>

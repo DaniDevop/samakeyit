@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\DemandeActeNaissance;
 use App\Http\Requests\DemandeDeurRequest;
+use App\Http\Requests\DemandeMariageRequest;
 use App\Models\DemandeActeNaissance as ModelsDemandeActeNaissance;
+use App\Models\DemandeMariage;
 use App\Models\Demandeur;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -40,7 +42,11 @@ class UtilisateurController extends Controller
 
 
     public function acte_mariage(){
-        return view('Utilisateur.actes_mariages');
+        $users = session()->get('users');
+
+        return view('Utilisateur.actes_mariages',[
+            'users'=> $users
+        ]);
 
     }
 
@@ -130,6 +136,33 @@ class UtilisateurController extends Controller
 
         $demande->numero_registre=$demandeActeNaissance->numero_registre;
         $demande->annee_de_naissance=$demandeActeNaissance->annee_de_naissance;
+        $demande->demandeur_id=$demandeActeNaissance->id;
+        $demande->save();
+        toastr()->info('Votre demande à été envoyé consulter vos messages !');
+        return back();
+    }
+
+    public function demandeActeMariage(DemandeMariageRequest $demandeActeNaissance){
+
+        $todayCount = DemandeMariage::where('demandeur_id', $demandeActeNaissance->id)
+        ->whereDate('created_at', date('Y-m-d'))
+        ->count();
+
+    if ($todayCount > 0) {
+        toastr()->warning('Vous avez déjà une demande en cours ');
+        return back();
+    }
+        $demande=new DemandeMariage();
+        $demande->numero_registre_mariage=$demandeActeNaissance->numero_registre_mariage;
+        $demande->centre=$demandeActeNaissance->centre;
+        $demande->date_mariage=$demandeActeNaissance->date_mariage;
+
+        $demande->lieu_mariage=$demandeActeNaissance->lieu_mariage;
+        $demande->date_naissance_marie=$demandeActeNaissance->date_naissance_marie;
+        $demande->date_naissance_mariee=$demandeActeNaissance->date_naissance_mariee;
+        $demande->regime_matrimonial=$demandeActeNaissance->regime_matrimonial;
+        $demande->polygamie_monogamie=$demandeActeNaissance->polygamie_monogamie;
+
         $demande->demandeur_id=$demandeActeNaissance->id;
         $demande->save();
         toastr()->info('Votre demande à été envoyé consulter vos messages !');
