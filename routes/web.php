@@ -35,5 +35,12 @@ Route::middleware(['auth.user'])->group(function () {
     Route::post('/demande_acte_naissance',[UtilisateurController::class,'demandeActeNaissace'])->name('demande.ActeNaissace');
     Route::post('/demande_acte_mariage',[UtilisateurController::class,'demandeActeMariage'])->name('demande.ActeMariage');
     Route::post('/demande_acte_deces',[UtilisateurController::class,'demandeActeDeces'])->name('demande.ActeDeces');
+    Route::get('/details_acte_naissance/{id}',[UtilisateurController::class,'detailsActeNaissance'])->name('details.ActeNaissance');
+    Route::post('/update_demande_acte_deces',[UtilisateurController::class,'updateActeNaissace'])->name('update.ActeMariage');
+    Route::get('/details_mariage/{id}',[UtilisateurController::class,'detailsMariage'])->name('details.Mariage');
+    Route::post('/update_demande_mariage',[UtilisateurController::class,'updateMariage'])->name('update.ActeMariages.app');
+    Route::get('/details_deces/{id}',[UtilisateurController::class,'detailsDeces'])->name('details.Deces');
+    Route::post('/update_demande_deces',[UtilisateurController::class,'updateActeDeces'])->name('deces.update.users');
+
 
 });

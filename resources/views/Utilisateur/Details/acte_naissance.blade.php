@@ -54,7 +54,6 @@ body {font-family: "Lato", sans-serif;}
   <a href="{{route('deconnection.users')}} "><i class="fa fa-fw fa-envelope"></i> Déconnexion</a>
 </div>
 
-
 <div class="main">
   <h4>Demande d acte de naissance </h4>
   <table class="table">
@@ -69,84 +68,60 @@ body {font-family: "Lato", sans-serif;}
     </tr>
   </thead>
   <tbody>
-    @foreach($ModelsDemandeActeNaissance as $Models)
+
     <tr>
       <th scope="row"> {{$Models->numero_registe}} </th>
       <td>{{$Models->nom_pere}}</td>
       <td>{{$Models->nom_mere}}</td>
       <td>{{$Models->annee_de_naissance}}</td>
       <td>{{$Models->status}}</td>
-      <td> <a href="{{route('details.ActeNaissance',['id'=>$Models->id])}}" class="btn btn-info"><i class="bi bi-eye"></i></a> </td>
+      <td> <a href="#" class="btn btn-info"><i class="bi bi-eye"></i></a> </td>
     </tr>
-     @endforeach
-  </tbody>
-</table>
-</div>
-
-
-<div class="main">
-  <h4>Demande d acte de deces</h4>
-  <table class="table">
-  <thead>
-    <tr>
-    <th scope="col">Numéro-registre</th>
-      <th scope="col">Nom-pere</th>
-      <th scope="col">Nom de la mère</th>
-      <th scope="col">Date-du-décès</th>
-      <th scope="col">Lieu-du-décès</th>
-      <th scope="col">Status</th>
-      <th scope="col">Details</th>
-    </tr>
-  </thead>
-  <tbody>
-  @foreach( $DemandeDecesModel as  $DecesModel)
-
-    <tr>
-    <th > {{$DecesModel->numero_registre}}  </th>
-
-      <th scope="row"> {{$DecesModel->date_naissance}}  </th>
-      <td>{{$DecesModel->nom_pere}}</td>
-      <td>{{$DecesModel->nom_mere}}</td>
-      <td>{{$DecesModel->date_deces}}</td>
-      <td>{{$DecesModel->lieu_deces}}</td>
-      <td>{{$DecesModel->status}}</td>
-
-      <td> <a href="{{route('details.Deces',['id'=>$DecesModel->id])}}" class="btn btn-info"><i class="bi bi-eye"></i></a> </td>
-    </tr>
-    @endforeach
 
   </tbody>
 </table>
 </div>
 
 <div class="main">
-  <h4>Demande d acte de Mariage </h4>
-  <table class="table">
-  <thead>
-    <tr>
-    <th scope="col">Numéro-registre</th>
-      <th scope="col">Centre</th>
-      <th scope="col">Date</th>
-      <th scope="col">Lieu</th>
-      <th scope="col">Regime</th>
-      <th scope="col">Status</th>
-      <th scope="col">Details</th>
-    </tr>
-  </thead>
-  <tbody>
 
-  @foreach(   $DemandeMariage as $Demande  )
-    <tr>
-      <th scope="row"> {{$Demande->numero_registre_mariage}} </th>
-      <td colspan="2">{{$Demande->centre}}</td>
-      <td>{{$Demande->date_mariage}}</td>
-      <td>{{$Demande->regime_matrimonial}}</td>
-      <td>{{$Demande->status}}</td>
-      <td> <a href="{{route('details.Mariage',['id'=>$Demande->id])}}" class="btn btn-info"><i class="bi bi-eye"></i></a> </td>
-    </tr>
-    @endforeach
-  </tbody>
-</table>
-</div>
+  <div class="container">
+        <h1>Formulaire Acte de Naissance    </h1>
+        @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li style="color: red;">{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+        <form  action="{{route('update.ActeMariage')}}" method="POST">
+            @csrf
+            <label for="numeroRegistre">Numéro de registre:</label><br>
+            <input type="text" id="numeroRegistre" name="numero_registre" value="{{$Models->numero_registe}} "><br>
+
+            <label for="nomPrenomPere">Nom et prénom du père:</label><br>
+            <input type="text" id="nomPrenomPere" name="nom_pere" value="{{$Models->nom_pere}} "><br>
+
+
+            <label for="nomPrenomPere">Nom et prénom de la mère:</label><br>
+            <input type="text" id="nomPrenomPere" name="nom_mere" value="{{$Models->nom_mere}} "><br>
+
+            <label for="anneeNaissance">Année de naissance:</label><br>
+            <input type="text" id="anneeNaissance" name="annee_de_naissance" value="{{$Models->annee_de_naissance}} "><br>
+
+            <label for="nomDepartement">Nom de votre département:</label><br>
+            <input type="text" id="nomDepartement" name="departement"  value="{{$Models->departement}}"><br>
+
+            <input type="hidden" name="id" value="{{$Models->id}}">
+
+            <input type="submit" value="Envoyer">
+        </form>
+        <div id="message" style="display: none;"></div>
+    </div>
+
+
+    </div>
+
 </body>
 </html>

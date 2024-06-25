@@ -218,4 +218,155 @@ class UtilisateurController extends Controller
         toastr()->info('Votre demande à été envoyé consulter vos messages !');
         return back();
     }
+
+
+    public function detailsActeNaissance($id){
+        $Models=ModelsDemandeActeNaissance::find($id);
+        if(!$Models){
+            toastr()->error('L opération n a pas marché veuillez ressayer  !');
+            return back();
+        }
+
+        $users=session()->get('users');
+
+        return view('Utilisateur.Details.acte_naissance',[
+            'users'=> $users,
+            'Models'=> $Models
+        ]);
+    }
+
+
+    public function updateActeNaissace(Request $demandeActeNaissance){
+        $demandeActeNaissance->validate([
+           'nom_pere'=>'required',
+           'nom_mere'=>'required',
+           'annee_de_naissance'=>'required',
+           'departement'=>'required|min:4',
+           'numero_registre'=>'required',
+            'id'=>'required|exists:demande_deces_models,id',
+        ]);
+
+        $demande= ModelsDemandeActeNaissance::find($demandeActeNaissance->id);
+        if(!$demande){
+            toastr()->error('La demande n existe pas désolé !');
+            return back();
+        }
+
+        $demande->nom_pere=$demandeActeNaissance->nom_pere;
+        $demande->nom_mere=$demandeActeNaissance->nom_mere;
+        $demande->departement=$demandeActeNaissance->departement;
+
+        $demande->numero_registe=$demandeActeNaissance->numero_registre;
+        $demande->annee_de_naissance=$demandeActeNaissance->annee_de_naissance;
+
+        $demande->save();
+        toastr()->info('Informations mise à jour avec succèss  !');
+        return back();
+    }
+
+
+
+    public function detailsMariage($id){
+        $Demandes=DemandeMariage::find($id);
+        if(!$Demandes){
+            toastr()->error('L opération n a pas marché veuillez ressayer  !');
+            return back();
+        }
+
+        $users=session()->get('users');
+
+        return view('Utilisateur.Details.acte_mariage',[
+            'users'=> $users,
+            'Demande'=>$Demandes
+        ]);
+    }
+
+
+    public function updateMariage(Request $demandeActeNaissance){
+
+        $demandeActeNaissance->validate([
+            'numero_registre_mariage'=>'required',
+           'centre'=>'required',
+           'date_mariage'=>'required',
+           'lieu_mariage'=>'required',
+           'date_naissance_marie'=>'required',
+           'date_naissance_mariee'=>'required',
+            'id'=>'required|exists:demande_deces_models,id',
+        ]);
+
+        $demande= DemandeMariage::find($demandeActeNaissance->id);
+        if(!$demande){
+            toastr()->error('La demande n existe pas désolé !');
+            return back();
+        }
+
+        $demande->numero_registre_mariage=$demandeActeNaissance->numero_registre_mariage;
+        $demande->centre=$demandeActeNaissance->centre;
+        $demande->date_mariage=$demandeActeNaissance->date_mariage;
+
+        $demande->lieu_mariage=$demandeActeNaissance->lieu_mariage;
+        $demande->date_naissance_marie=$demandeActeNaissance->date_naissance_marie;
+        $demande->date_naissance_mariee=$demandeActeNaissance->date_naissance_mariee;
+        $demande->regime_matrimonial=$demandeActeNaissance->regime_matrimonial;
+        $demande->polygamie_monogamie=$demandeActeNaissance->polygamie_monogamie;
+
+        $demande->save();
+        toastr()->info('Informations mise à jour avec succèss  !');
+        return back();
+    }
+
+
+
+    public function detailsDeces($id){
+        $DecesModel=DemandeDecesModel::find($id);
+        if(!$DecesModel){
+            toastr()->error('L opération n a pas marché veuillez ressayer  !');
+            return back();
+        }
+
+        $users=session()->get('users');
+
+        return view('Utilisateur.Details.acte_deces',[
+            'users'=> $users,
+            'DecesModel'=>$DecesModel
+        ]);
+    }
+
+
+    public function updateActeDeces(Request $demandeActeNaissance){
+
+            $demandeActeNaissance->validate([
+                'numero_registre'=>'required',
+                'centre'=>'required',
+                'date_deces'=>'required',
+                'lieu_deces'=>'required',
+                'nom_pere'=>'required',
+                'sexe'=>'required',
+                'date_naissance'=>'required',
+                'nom_mere'=>'required',
+                'id'=>'required|exists:demande_deces_models,id',
+            ]);
+
+        $demande= DemandeDecesModel::find($demandeActeNaissance->id);
+        if(!$demande){
+            toastr()->error('La demande n existe pas désolé !');
+            return back();
+        }
+
+        $demande->numero_registre=$demandeActeNaissance->numero_registre;
+        $demande->centre=$demandeActeNaissance->centre;
+        $demande->date_naissance=$demandeActeNaissance->date_naissance;
+
+        $demande->lieu_deces=$demandeActeNaissance->lieu_deces;
+        $demande->sexe=$demandeActeNaissance->sexe;
+        $demande->nom_mere=$demandeActeNaissance->nom_mere;
+        $demande->nom_pere=$demandeActeNaissance->nom_pere;
+
+        $demande->date_deces=$demandeActeNaissance->date_deces;
+        $demande->save();
+        toastr()->info('Informations mise à jour avec succèss  !');
+        return back();
+    }
+
+
 }
