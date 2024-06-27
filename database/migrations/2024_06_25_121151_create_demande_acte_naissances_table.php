@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('departement');
             $table->foreignIdFor(Demandeur::class);
             $table->string('status');
+            $table->string('piece')->nullable();
 
             $table->timestamps();
         });

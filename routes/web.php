@@ -26,8 +26,29 @@ Route::post('/login-users',[UtilisateurController::class,'loginUsers'])->name('l
 Route::get('/',[UtilisateurController::class,'home'])->name('home.users');
 
 // Users Controlles
+Route::get('/login-admin',[AdminController::class,'login'])->name('login.admin');
 
-Route::get('/admin',[AdminController::class,'index'])->name('home.admin');
+Route::post('/doLogin',[AdminController::class,'doLogin'])->name('login.authentification');
+
+Route::middleware(['auth.admin'])->group(function () {
+    Route::get('/logoutUsers',[AdminController::class,'logout'])->name('logout.authentification');
+
+    Route::get('/admin',[AdminController::class,'index'])->name('home.admin');
+    Route::get('/admin_add_users',[AdminController::class,'users'])->name('add.users');
+    Route::post('/admin_new_users',[AdminController::class,'create'])->name('create.users');
+    Route::get('/admin_ajout_document',[AdminController::class,'ajout_document'])->name('ajout.document');
+    Route::post('/admin_new_document',[AdminController::class,'addDocument'])->name('add.Document');
+    Route::get('/admin_demande-listes',[AdminController::class,'listes_document'])->name('listes.document');
+    Route::get('/demande_acte-naissance/{id}',[AdminController::class,'detailsActenaissance'])->name('details.Actenaissance.users');
+    Route::post('/sendEmailToDemandeur',[AdminController::class,'envoieFileToMailNaissance'])->name('envoie.File.ToMail');
+    Route::get('/demande_mariage/{id}',[AdminController::class,'detailsActMariage'])->name('details.Acte.Mariage');
+    Route::post('/sendEmailToDemandeurMariage',[AdminController::class,'envoieFileToMailMariage'])->name('envoie.File.ToMail.mariage');
+    Route::get('/demande_deces/{id}',[AdminController::class,'detailsADeces'])->name('detailsA.Deces');
+    Route::post('/sendEmailToDeces',[AdminController::class,'envoieFileToMailDeces'])->name('envoie.File.ToMailDeces');
+
+
+
+});
 
 Route::middleware(['auth.user'])->group(function () {
 

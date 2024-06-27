@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('regime_matrimonial');
             $table->string('polygamie_monogamie');
             $table->string('status');
+            $table->string('piece')->nullable();
 
             $table->foreignIdFor(Demandeur::class);
 

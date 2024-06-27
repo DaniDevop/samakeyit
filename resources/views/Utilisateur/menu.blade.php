@@ -56,6 +56,8 @@ body {font-family: "Lato", sans-serif;}
 
 
 <div class="main">
+<div style="padding-top:70px;"></div>
+
   <h4>Demande d acte de naissance </h4>
   <table class="table">
   <thead>
@@ -70,6 +72,7 @@ body {font-family: "Lato", sans-serif;}
   </thead>
   <tbody>
     @foreach($ModelsDemandeActeNaissance as $Models)
+    @if($Models->status=='En-cours')
     <tr>
       <th scope="row"> {{$Models->numero_registe}} </th>
       <td>{{$Models->nom_pere}}</td>
@@ -78,6 +81,7 @@ body {font-family: "Lato", sans-serif;}
       <td>{{$Models->status}}</td>
       <td> <a href="{{route('details.ActeNaissance',['id'=>$Models->id])}}" class="btn btn-info"><i class="bi bi-eye"></i></a> </td>
     </tr>
+    @endif
      @endforeach
   </tbody>
 </table>
@@ -85,6 +89,8 @@ body {font-family: "Lato", sans-serif;}
 
 
 <div class="main">
+<div style="padding-top:70px;"></div>
+
   <h4>Demande d acte de deces</h4>
   <table class="table">
   <thead>
@@ -100,7 +106,7 @@ body {font-family: "Lato", sans-serif;}
   </thead>
   <tbody>
   @foreach( $DemandeDecesModel as  $DecesModel)
-
+     @if($DecesModel->status =='En-cours')
     <tr>
     <th > {{$DecesModel->numero_registre}}  </th>
 
@@ -113,6 +119,7 @@ body {font-family: "Lato", sans-serif;}
 
       <td> <a href="{{route('details.Deces',['id'=>$DecesModel->id])}}" class="btn btn-info"><i class="bi bi-eye"></i></a> </td>
     </tr>
+    @endif
     @endforeach
 
   </tbody>
@@ -121,6 +128,8 @@ body {font-family: "Lato", sans-serif;}
 
 <div class="main">
   <h4>Demande d acte de Mariage </h4>
+  <div style="padding-top:70px;"></div>
+
   <table class="table">
   <thead>
     <tr>
@@ -136,6 +145,7 @@ body {font-family: "Lato", sans-serif;}
   <tbody>
 
   @foreach(   $DemandeMariage as $Demande  )
+  @if($Demande->status !='Valider')
     <tr>
       <th scope="row"> {{$Demande->numero_registre_mariage}} </th>
       <td colspan="2">{{$Demande->centre}}</td>
@@ -144,6 +154,7 @@ body {font-family: "Lato", sans-serif;}
       <td>{{$Demande->status}}</td>
       <td> <a href="{{route('details.Mariage',['id'=>$Demande->id])}}" class="btn btn-info"><i class="bi bi-eye"></i></a> </td>
     </tr>
+    @endif
     @endforeach
   </tbody>
 </table>

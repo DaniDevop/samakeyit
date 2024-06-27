@@ -21,11 +21,11 @@
                 <h4>agent</h4>
                 <small>Admin</small>
             </div>
-            <img decoding="async" src="images/pp.jpg" width="30" height="30" class="logo-admin">
+            <img decoding="async" src="{{asset('storage/'.Auth::user()->profile)}}" width="30" height="30" class="logo-admin">
             <div class="dropdown-content">
                 <p>Profil</p>
-                <p>Déconnexion</p>
-            </div>
+                <a href="{{route('logout.authentification')}}">Déconnexion</a>
+                </div>
         </div>
     </header>
    @include('Admin.pages.sidebar')

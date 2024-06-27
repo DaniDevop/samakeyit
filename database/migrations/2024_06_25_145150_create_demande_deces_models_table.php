@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('date_deces');
             $table->string('lieu_deces');
             $table->string('status');
+            $table->string('piece')->nullable();
 
             $table->string('sexe');
             $table->foreignIdFor(Demandeur::class);

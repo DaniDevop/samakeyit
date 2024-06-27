@@ -15,15 +15,7 @@ body
 	height:  20%;
 }
 /*boder form */
-form
-{
-	width: 140%;
-	padding: 120px;
-	border: 1px solid #f1f1f1;
-	background: #fff;
-	box-shadow: 0 0 20px 0 rgba(0,0,0,0.2), 0 5px 5px 0 rgba(0,0,0,0.24);
-	 ;
-}
+
 
 #containerh1
 {
@@ -31,23 +23,6 @@ form
 	margin: 0 auto;
 	padding-bottom: 50px;
 	text-align: center;
-}
-/*Mise en forme de zones de texte en plein largeur*/
-input[type=text], input[type=password]
-{
-	width: 100%;
-	padding: 12px 20px;
-	margin: 8px 0;
-	display: inline-block;
-	border: 1px solid #ccc;
-	box-sizing: border-box;
-}
-/* Définissons un style pour tous les boutons*/
-input[type=submit]:hover
-{
-	background-color: #008ea1;
-	color:#fff;
-	border: 1px solid #ccc;
 }
 
 
@@ -581,3 +556,7 @@ body {
 }
 
 </style>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
