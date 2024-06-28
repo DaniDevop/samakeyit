@@ -22,10 +22,10 @@ class DemandeDeurRequest extends FormRequest
     public function rules(): array
     {
         return [
-           'name'=>'required',
+           'nom'=>'required',
            'prenom'=>'required',
-           'email'=>'required|email|unique:users,email',
-           'tel'=>'required|unique:users,tel',
+           'email'=>'required|email|unique:demandeurs,email',
+           'tel'=>'required|unique:demandeurs,tel',
            'password'=>'required|min:4',
            'password_confirm'=>'required|min:4',
            'profile'=>'nullable|image:png,jpeg,jpg|max:1024',
@@ -42,7 +42,7 @@ class DemandeDeurRequest extends FormRequest
     public function messages(): array
     {
         return [
-           'name.required'=>'Le nom est requis dans le formulaire',
+           'nom.required'=>'Le nom est requis dans le formulaire',
            'prenom.required'=>'Le prenom est requis pour l inscription',
            'email.email'=>'L email doit etre du bon format 📨',
            'tel.unique'=>'Le téléphone doit etre unique',

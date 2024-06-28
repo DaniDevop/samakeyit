@@ -21,6 +21,11 @@ Route::get('/inscription',[UtilisateurController::class,'signup'])->name('signup
 Route::get('/login',[UtilisateurController::class,'login'])->name('login.users');
 
 
+Route::get('/login-actions',function(){
+    return view('Admin.actions.index');
+});
+
+
 Route::post('/add_users_account',[UtilisateurController::class,'store'])->name('store.users');
 Route::post('/login-users',[UtilisateurController::class,'loginUsers'])->name('login.Users');
 Route::get('/',[UtilisateurController::class,'home'])->name('home.users');
@@ -29,11 +34,13 @@ Route::get('/',[UtilisateurController::class,'home'])->name('home.users');
 Route::get('/login-admin',[AdminController::class,'login'])->name('login.admin');
 
 Route::post('/doLogin',[AdminController::class,'doLogin'])->name('login.authentification');
+Route::get('/reset_password_admin',[AdminController::class,'adminPasswordReset'])->name('admin.Password.Reset');
+Route::post('/reset_admin_password_verification',[AdminController::class,'update_password_reset_admin'])->name('update.password.reset.admin');
 
 Route::middleware(['auth.admin'])->group(function () {
     Route::get('/logoutUsers',[AdminController::class,'logout'])->name('logout.authentification');
 
-    Route::get('/admin',[AdminController::class,'index'])->name('home.admin');
+    Route::get('/admin-users',[AdminController::class,'index'])->name('home.admin');
     Route::get('/admin_add_users',[AdminController::class,'users'])->name('add.users');
     Route::post('/admin_new_users',[AdminController::class,'create'])->name('create.users');
     Route::get('/admin_ajout_document',[AdminController::class,'ajout_document'])->name('ajout.document');
@@ -46,7 +53,11 @@ Route::middleware(['auth.admin'])->group(function () {
     Route::get('/demande_deces/{id}',[AdminController::class,'detailsADeces'])->name('detailsA.Deces');
     Route::post('/sendEmailToDeces',[AdminController::class,'envoieFileToMailDeces'])->name('envoie.File.ToMailDeces');
 
+    Route::get('/update-account',[AdminController::class,'update_account'])->name('update_.ccount.users');
 
+    Route::post('/update_account_admin',[AdminController::class,'update_account_users'])->name('update.account.users');
+    Route::post('/update_password_admin',[AdminController::class,'update_password_admin'])->name('update.password.admin');
+    Route::get('/delete_users_account/{id}',[AdminController::class,'deleteUsers'])->name('delete.Users');
 
 });
 

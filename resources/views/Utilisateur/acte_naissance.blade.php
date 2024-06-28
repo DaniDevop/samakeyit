@@ -46,13 +46,13 @@ body {font-family: "Lato", sans-serif;}
 <body>
 
 <div class="sidebar">
-<a href="{{route('menu.users')}}"><i class="fa fa-fw fa-home"></i> Acceuil</a>
-
-<a href="{{route('acte_naissance.users')}}"><i class="fa fa-fw fa-home"></i> Demande d'acte de naissance</a>
-  <a href="{{route('acte_mariage.users')}}"><i class="fa fa-fw fa-wrench"></i> Acte de mariage</a>
-  <a href="{{route('actes_deces.users')}}"><i class="fa fa-fw fa-user"></i> Acte de décès</a>
-  <a href="{{route('deconnection.users')}} "><i class="fa fa-fw fa-envelope"></i> Déconnexion</a>
+  <a href="{{route('menu.users')}}"><i class="bi bi-house-door"></i> Accueil</a>
+  <a href="{{route('acte_naissance.users')}}"><i class="bi bi-file-earmark-person"></i> Demande d'acte de naissance</a>
+  <a href="{{route('acte_mariage.users')}}"><i class="bi bi-file-earmark-heart"></i> Acte de mariage</a>
+  <a href="{{route('actes_deces.users')}}"><i class="bi bi-file-earmark-excel"></i> Acte de décès</a>
+  <a href="{{route('deconnection.users')}}"><i class="bi bi-box-arrow-right"></i> Déconnexion</a>
 </div>
+
 
 <div class="main">
 

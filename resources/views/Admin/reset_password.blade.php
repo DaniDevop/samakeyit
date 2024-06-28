@@ -82,9 +82,9 @@
 
   <div class="login-container">
     <div class="login-form">
-      <h1>Login</h1>
+      <h1>Renitialiser </h1>
 
-      <form action="{{route('login.authentification')}}" method="post">
+      <form action="{{route('update.password.reset.admin')}}" method="post">
       @if ($errors->any())
     <div class="alert alert-danger">
         <ul>
@@ -105,10 +105,15 @@
           <input type="password" id="password" name="password" placeholder="Enter your password" >
         </div>
 
-        <button type="submit" class="btn btn-primary">Login</button>
+        <div class="form-group">
+          <label for="password">Password-confirmation</label>
+          <input type="password" id="password" name="password_confirm"  >
+        </div>
+
+        <button type="submit" class="btn btn-primary">Valider</button>
 
       </form>
-            <a href="{{route('admin.Password.Reset')}}">Mot de passe oublié ?</a>
+
     </div>
 
     <div class="login-image">

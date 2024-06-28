@@ -161,14 +161,7 @@ class UtilisateurController extends Controller
 
     public function demandeActeMariage(DemandeMariageRequest $demandeActeNaissance){
 
-        $todayCount = DemandeMariage::where('demandeur_id', $demandeActeNaissance->id)
-        ->whereDate('created_at', date('Y-m-d'))
-        ->count();
-
-    if ($todayCount > 0) {
-        toastr()->warning('Vous avez déjà une demande en cours ');
-        return back();
-    }
+       
         $demande=new DemandeMariage();
         $demande->numero_registre_mariage=$demandeActeNaissance->numero_registre_mariage;
         $demande->centre=$demandeActeNaissance->centre;
@@ -243,7 +236,7 @@ class UtilisateurController extends Controller
            'annee_de_naissance'=>'required',
            'departement'=>'required|min:4',
            'numero_registre'=>'required',
-            'id'=>'required|exists:demande_deces_models,id',
+            'id'=>'required|exists:demande_acte_naissances,id',
         ]);
 
         $demande= ModelsDemandeActeNaissance::find($demandeActeNaissance->id);
@@ -291,7 +284,7 @@ class UtilisateurController extends Controller
            'lieu_mariage'=>'required',
            'date_naissance_marie'=>'required',
            'date_naissance_mariee'=>'required',
-            'id'=>'required|exists:demande_deces_models,id',
+            'id'=>'required|exists:demande_mariages,id',
         ]);
 
         $demande= DemandeMariage::find($demandeActeNaissance->id);

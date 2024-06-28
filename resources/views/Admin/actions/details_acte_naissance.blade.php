@@ -1,34 +1,51 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  @include('Admin.pages.styles')
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>document.getElementsByTagName("html")[0].className += " js";</script>
+  <link rel="stylesheet" href="{{asset('admin/assets/css/style.css')}}">
+  <title>Responsive Sidebar Navigation | CodyHouse</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
+<style>
+    .demande-section {
+  margin-bottom: 30px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.demande-section h4 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+
+
+</style>
 <body>
-  <div class="content">
-    <header>
-      <p><label for="menu"><span class="fa fa-bars"></span></label><span class="accueil">Accueil</span></p>
+@include('Admin.pages.header')
+<!-- .cd-main-header -->
 
-      <div class="search-wrapp">
-        <span class="fa fa-search"></span>
-        <input type="search" name="" placeholder="recherche">
-      </div>
-
-      <div id="dropdown" class="user-wrapp">
-        <div>
-        <h4>agent  : </br> {{Auth::user()->name}}</h4>
-        <small>Admin</small>
-        </div>
-        <img decoding="async" src="{{asset('storage/'.Auth::user()->profile)}}" width="30" height="30" class="logo-admin">
-        <div class="dropdown-content">
-          <p>Profil</p>
-          <a href="{{route('logout.authentification')}}">Déconnexion</a>
-          </div>
-      </div>
-    </header>
-    <div style="padding-top:90px;"></div>
+  <main class="cd-main-content">
+    @include('Admin.pages.navbar')
+    <div class="cd-content-wrapper">
+      <div class="text-component text-center">
+        <h1>Details de demande d acte de naissance</h1>
+        @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li style="color: red;">{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+        <div style="padding-top:90px;"></div>
     <div class="container"> <div class="row"> <div class="col-md-12"> <div class="text-center"> <h4>Details d acte de naissance </h4>
 
             <table class="table table-striped table-hover">
@@ -89,8 +106,6 @@
           <span><a href="{{ Storage::url($demande->document) }}" target="_blank">Apperu</a></span>
           @endif
         </option>
-        <a href="{{ Storage::url($demande->document) }}" target="_blank">Apperu</a>
-
       @endforeach
     </select>
   </div>
@@ -107,22 +122,11 @@
     </div>
   </div>
 </div>
-    @include('Admin.pages.sidebar')
-  </div>
-
-  <script>
-document.addEventListener('DOMContentLoaded', function() {
-  const documentPreviewLinks = document.querySelectorAll('.document-preview');
-  const documentPreviewIframe = document.getElementById('document-preview-iframe');
-
-  documentPreviewLinks.forEach(link => {
-    link.addEventListener('click', function(event) {
-      event.preventDefault(); // Prevent default form submission
-      documentPreviewIframe.src = this.dataset.documentUrl;
-      $('#document-preview-modal').modal('show');
-    });
-  });
-});
-</script>
+      </div>
+    </div> <!-- .content-wrapper -->
+  </main> <!-- .cd-main-content -->
+  <script src="assets/js/util.js"></script> <!-- util functions included in the CodyHouse framework -->
+  <script src="assets/js/menu-aim.js"></script>
+  <script src="assets/js/main.js"></script>
 </body>
 </html>
