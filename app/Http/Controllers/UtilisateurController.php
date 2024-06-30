@@ -36,17 +36,28 @@ class UtilisateurController extends Controller
 
     public function acte_naissance(){
         $users = session()->get('users');
-        return view('Utilisateur.acte_naissance',[
+        return view('user.naissance.store',[
             'users'=> $users
         ]);
 
+    }
+
+    public function listes_deces(){
+        $users = session()->get('users');
+
+        $DemandeDecesModel =  DemandeDecesModel::where('demandeur_id', $users[0]->id)->get();
+
+        return view('user.deces.listes',[
+            'DemandeDecesModel'=>$DemandeDecesModel,
+
+        ]);
     }
 
 
     public function acte_mariage(){
         $users = session()->get('users');
 
-        return view('Utilisateur.actes_mariages',[
+        return view('user.mariage.store',[
             'users'=> $users
         ]);
 
@@ -54,7 +65,7 @@ class UtilisateurController extends Controller
 
     public function acte_de_deces(){
         $users = session()->get('users');
-        return view('Utilisateur.actes_deces',[
+        return view('user.deces.store',[
             'users'=> $users
         ]);
 
@@ -65,7 +76,7 @@ class UtilisateurController extends Controller
         $DemandeDecesModel =  DemandeDecesModel::where('demandeur_id', $users[0]->id)->get();
         $DemandeMariage =  DemandeMariage::where('demandeur_id', $users[0]->id)->get();
 
-        return view('Utilisateur.menu',[
+        return view('user.naissance.listes',[
                'users'=>$users,
                'ModelsDemandeActeNaissance'=>$ModelsDemandeActeNaissance,
                'DemandeDecesModel'=>$DemandeDecesModel,
@@ -222,7 +233,7 @@ class UtilisateurController extends Controller
 
         $users=session()->get('users');
 
-        return view('Utilisateur.Details.acte_naissance',[
+        return view('user.naissance.details',[
             'users'=> $users,
             'Models'=> $Models
         ]);
@@ -268,7 +279,7 @@ class UtilisateurController extends Controller
 
         $users=session()->get('users');
 
-        return view('Utilisateur.Details.acte_mariage',[
+        return view('user.mariage.details',[
             'users'=> $users,
             'Demande'=>$Demandes
         ]);
@@ -319,9 +330,20 @@ class UtilisateurController extends Controller
 
         $users=session()->get('users');
 
-        return view('Utilisateur.Details.acte_deces',[
+        return view('user.deces.details',[
             'users'=> $users,
             'DecesModel'=>$DecesModel
+        ]);
+    }
+
+
+    public function liste_mariage(){
+        $users =session()->get('users');
+
+        $DemandeMariage =  DemandeMariage::where('demandeur_id', $users[0]->id)->get();
+
+        return view('user.mariage.listes',[
+            'DemandeMariage'=> $DemandeMariage
         ]);
     }
 

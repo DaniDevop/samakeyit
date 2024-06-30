@@ -14,21 +14,22 @@
 
 	<body>
 
-		<div class="wrapper" style="background-image: url('/home/login/images/lion.jpg');">
+    <div class="wrapper" style="background-image: url('/home/login/images/temp.jpg');">
 			<div class="inner">
 				<form action="{{route('login.Users.doLogin')}}" method="POST">
+
+
+					<h3 style="color:blue;">Page de connexion</h3>
                     @csrf
                                             @if ($errors->any())
                             <div class="alert alert-danger">
                                 <ul>
                                     @foreach ($errors->all() as $error)
-                                        <li style="color: red;">{{ $error }}</li>
+                                        <li style="color: blue;">{{ $error }}</li>
                                     @endforeach
                                 </ul>
                             </div>
                         @endif
-
-					<h3 style="color:wheat;">Page de connexion</h3>
 					<div class="form-group">
 						<div class="form-wrapper">
 							<label for=""></label>

@@ -52,7 +52,7 @@
           <section class="hero" id="hero">
             <div class="container">
 			  <!-- Slider Button (don't edit!)-->
-              <div class="row"> 
+              <div class="row">
                 <div class="col-md-12 text-right navicon">
                   <a id="nav-toggle" class="nav_slide_button" href="#"><span></span></a>
                 </div>
@@ -112,32 +112,13 @@
           <div class="container">
         <!-- Headline -->
             <div class="row">
-              <div class="col-md-12">
-                <h1 class="arrow">I do amazing things for clients</h1>
-              </div>
+
             </div>
             <div class="row">
               <div class="col-md-12">
           <div class="services">
           <!-- Service Box 1 -->
-                  <div class="col-md-4 wp2 item">
-                    <div class="icon">
-                      <i class="fa fa-camera"></i><!-- Icon -->
-                    </div>
-                    <h2>Photographer</h2><!-- Title -->
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a lorem quis neque interdum consequat ut sed sem. Duis quis tempor nunc. Interdum et malesuada fames ac ante ipsum
-                    primis in faucibus.</p><!-- Description -->
-                  </div>
-          <!-- Service Box 2 -->
-                  <div class="col-md-4 wp2 item delay-05s">
-                    <div class="icon">
-                      <i class="fa fa-desktop"></i><!-- Icon -->
-                    </div>
-                    <h2>Web Designer</h2><!-- Title -->
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a lorem quis neque interdum consequat ut sed sem. Duis quis tempor nunc. Interdum et malesuada fames ac ante ipsum
-                    primis in faucibus.</p><!-- Description -->
-                  </div>
-          <!-- Service Box 3 -->
+
 
           </div>
                   <div class="clearfix"></div>
@@ -157,9 +138,12 @@
 					<div class="about-image" style="background-image:url(/admins/login/images/sene.jpg)"></div><!-- about image 1 -->
 				</div>
 				<div class="col-md-6 about-text">
-					<h6>High quality webdesign</h6><!-- headline-->
-					<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat.</p><br><!-- About Text 1 -->
-				</div>
+					<h6>Marie du sénégal</h6><!-- headline-->
+                    Voici un exemple de texte pour présenter les mariées du Sénégal :
+
+<p>Les mariées du Sénégal sont connues pour leur beauté et leur élégance. Elles portent souvent des tenues traditionnelles colorées et ornées de perles et de bijoux en or. Le boubou est l'une des tenues les plus populaires pour les mariées sénégalaises, il s'agit d'une robe ample et longue avec des manches larges. Les mariées peuvent également porter un pagne, un tissu enroulé autour de la taille, et un foulard assorti pour couvrir leurs cheveux.</p>
+<p>Les mariages au Sénégal sont des événements importants et sont célébrés avec beaucoup de musique, de danse et de nourriture. Les cérémonies de mariage peuvent durer plusieurs jours et impliquent souvent de nombreuses coutumes et traditions. Les familles des mariés se rassemblent pour célébrer l'union et pour bénir le couple.</p>
+<p>Si vous êtes invité à un mariage sénégalais, vous aurez l'occasion de découvrir la richesse de la culture sénégalaise et de vivre une expérience inoubliable. Les mariées du Sénégal sont des symboles de la beauté, de la grâce et de l'élégance africaines.</p>				</div>
 			</div>
 			<!-- About 2 -->
 
@@ -178,93 +162,6 @@
     =========================== -->
 
 
-        <div class="container">
-          <div class="row row-offset-0">
-
-          <!-- PORTFOLIO ITEM 1 -->
-          <div class="col-md-3 col-sm-6">
-              <div class="overlay-effect effects clearfix">
-                  <div class="img">
-                      <a href="img/portfolio/portfolio-01-large.jpg" data-lightbox="roadtrip" title="Project One - Lorem Ipsum"><img class="grayscale" src="img/portfolio/portfolio-01-thumbnail.jpg" alt="Portfolio Item"></a>
-                  </div>
-              </div>
-          </div>
-  	    <!-- PORTFOLIO ITEM END -->
-
-  	    <!-- PORTFOLIO ITEM 2 -->
-          <div class="col-md-3 col-sm-6">
-              <div class="overlay-effect effects clearfix">
-                  <div class="img">
-                      <a href="img/portfolio/portfolio-02-large.jpg" data-lightbox="roadtrip" title="Project Two - Lorem Ipsum"><img class="grayscale" src="img/portfolio/portfolio-02-thumbnail.jpg" alt="Portfolio Item"></a>
-                  </div>
-              </div>
-          </div>
-  	    <!-- PORTFOLIO ITEM END -->
-
-  		<!-- PORTFOLIO ITEM 3 -->
-          <div class="col-md-3 col-sm-6">
-              <div class="overlay-effect effects clearfix">
-                  <div class="img">
-                      <a href="img/portfolio/portfolio-03-large.jpg" data-lightbox="roadtrip" title="Project Three - Lorem Ipsum"><img class="grayscale" src="img/portfolio/portfolio-03-thumbnail.jpg" alt="Portfolio Item"></a>
-                  </div>
-              </div>
-          </div>
-  	    <!-- PORTFOLIO ITEM END -->
-
-  		<!-- PORTFOLIO ITEM 4 -->
-          <div class="col-md-3 col-sm-6 ">
-              <div class="overlay-effect effects clearfix">
-                  <div class="img">
-                      <a href="img/portfolio/portfolio-04-large.jpg" data-lightbox="roadtrip" title="Project Four - Lorem Ipsum"><img class="grayscale" src="img/portfolio/portfolio-04-thumbnail.jpg" alt="Portfolio Item"></a>
-                  </div>
-              </div>
-          </div>
-  	    <!-- PORTFOLIO ITEM END -->
-
-          <!-- PORTFOLIO ITEM 5 -->
-          <div class="col-md-3 col-sm-6 ">
-              <div class="overlay-effect effects clearfix">
-                  <div class="img">
-                      <a href="img/portfolio/portfolio-05-large.jpg" data-lightbox="roadtrip" title="Project Five - Lorem Ipsum"><img class="grayscale" src="img/portfolio/portfolio-05-thumbnail.jpg" alt="Portfolio Item"></a>
-                  </div>
-              </div>
-          </div>
-  	    <!-- PORTFOLIO ITEM END -->
-
-  	    <!-- PORTFOLIO ITEM 6 -->
-          <div class="col-md-3 col-sm-6">
-              <div class="overlay-effect effects clearfix">
-                  <div class="img">
-                      <a href="img/portfolio/portfolio-06-large.jpg" data-lightbox="roadtrip" title="Project Six - Lorem Ipsum"><img class="grayscale" src="img/portfolio/portfolio-06-thumbnail.jpg" alt="Portfolio Item"></a>
-                  </div>
-              </div>
-          </div>
-  	    <!-- PORTFOLIO ITEM END -->
-
-  		<!-- PORTFOLIO ITEM 7 -->
-          <div class="col-md-3 col-sm-6">
-              <div class="overlay-effect effects clearfix">
-                  <div class="img">
-                      <a href="img/portfolio/portfolio-07-large.jpg" data-lightbox="roadtrip" title="Project Seven - Lorem Ipsum"><img class="grayscale" src="img/portfolio/portfolio-07-thumbnail.jpg" alt="Portfolio Item"></a>
-                  </div>
-              </div>
-          </div>
-  	    <!-- PORTFOLIO ITEM END -->
-
-  		<!-- PORTFOLIO ITEM 8 -->
-          <div class="col-md-3 col-sm-6">
-              <div class="overlay-effect effects clearfix">
-                  <div class="img">
-                      <a href="img/portfolio/portfolio-08-large.jpg" data-lightbox="roadtrip" title="Project Eight - Lorem Ipsum"><img class="grayscale" src="img/portfolio/portfolio-08-thumbnail.jpg" alt="Portfolio Item"></a>
-                  </div>
-              </div>
-          </div>
-  	    <!-- PORTFOLIO ITEM END -->
-        </div><!--/row-->
-      </div><!--/.container-->
-		<!-- ==========================
-        PORTFOLIO SECTION END
-        =========================== -->
 
 
 
@@ -389,11 +286,7 @@
               </div>
             </div>
 			<div class="row">
-			  <!-- Google Maps (Change your Settings below) -->
-			  <div class="col-md-6">
-			    <div id="googlemaps"></div>
-			  </div>
-			  <!-- Contact Form -->
+
 
 			</div>
 			<br>
@@ -408,7 +301,7 @@
 				  <li><a href="#" class="social-btn"><i class="fa fa-youtube"></i></a></li><!-- youtube -->
                 </ul>
               </div>
-            </div>
+
           </div>
         </section>
 		<!-- ==========================

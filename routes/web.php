@@ -94,5 +94,9 @@ Route::middleware(['auth.user'])->group(function () {
     Route::get('/details_deces/{id}',[UtilisateurController::class,'detailsDeces'])->name('details.Deces');
     Route::post('/update_demande_deces',[UtilisateurController::class,'updateActeDeces'])->name('deces.update.users');
 
+    Route::get('/listes_mariage',[UtilisateurController::class,'liste_mariage'])->name('liste_mariage.vue');
+
+
+    Route::get('/listes_deces',[UtilisateurController::class,'listes_deces'])->name('listes.deces');
 
 });

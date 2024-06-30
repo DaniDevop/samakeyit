@@ -14,40 +14,58 @@
 
 	<body>
 
-    <div class="wrapper" style="background-image: url('/home/login/images/lion.jpg');">
+    <div class="wrapper" style="background-image: url('/home/login/images/temp.jpg');">
     <div class="inner">
-				<form action="">
-					<h3>Registration Form</h3>
+				<form action="{{route('store.users')}}" method="POST">
+                    @csrf
+                                            @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li style="color: blue;">{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+					<h3>Creation de compte</h3>
 					<div class="form-group">
 						<div class="form-wrapper">
-							<label for="">First Name</label>
-							<input type="text" class="form-control">
+							<label for="">Nom</label>
+							<input type="text" class="form-control" name="nom" >
 						</div>
 						<div class="form-wrapper">
-							<label for="">Last Name</label>
-							<input type="text" class="form-control">
+							<label for="">Prenom</label>
+							<input type="text" class="form-control" name="prenom">
 						</div>
 					</div>
 					<div class="form-wrapper">
 						<label for="">Email</label>
-						<input type="text" class="form-control">
+						<input type="text" class="form-control" name="email">
+					</div>
+                    <div class="form-wrapper">
+						<label for="">Tel</label>
+                        <input type="tel" id="num_telephone"  class="form-control"name="tel" ><br>
+
+					</div>
+
+                    <div class="form-wrapper">
+						<label for="">Numéro de carte d'identité nationale:</label>
+                        <input type="text" id="num_telephone" name="num_carte_id"  class="form-control"name="tel" ><br>
+
 					</div>
 					<div class="form-wrapper">
 						<label for="">Password</label>
-						<input type="password" class="form-control">
+						<input type="password" class="form-control" name="password">
 					</div>
 					<div class="form-wrapper">
 						<label for="">Confirm Password</label>
-						<input type="password" class="form-control">
+						<input type="password" class="form-control" name="password_confirm">
 					</div>
-					<div class="checkbox">
-						<label>
-							<input type="checkbox"> I caccept the Terms of Use & Privacy Policy.
-							<span class="checkmark"></span>
-						</label>
-					</div>
-					<button>Register Now</button>
+
+					<button>Enregistrer</button>
+                    <a href="/" style="color:blue;">Acceuil</a>
 				</form>
+
 			</div>
 		</div>
 
