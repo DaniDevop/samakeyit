@@ -25,24 +25,84 @@ class AdminController extends Controller
 
     public function index(){
 
-        $ModelsDemandeActeNaissance =DemandeActeNaissance::paginate(5);
-        $DemandeDecesModel =  DemandeDecesModel::paginate(5);
-        $DemandeAll =  DemandeMariage::paginate(5);
-        return view('Admin.actions.index',[
-            'ModelsDemandeActeNaissance'=>$ModelsDemandeActeNaissance,
-            'DemandeDecesModel'=>$DemandeDecesModel,
-            'DemandeAll'=>$DemandeAll
+        $demandeNaissance=DemandeActeNaissance::count();
+        $demandeDeces=DemandeDecesModel::count();
+        $demandeMariage=DemandeMariage::count();
+        return view('admins.home ',[
+            'demandeNaissance'=> $demandeNaissance,
+            'demandeDeces'=>$demandeDeces,
+            'demandeMariage'=>$demandeMariage
         ]);
 
     }
 
+    public function listesDemande_mariage(){
+
+        $demandeMariage=DemandeMariage::paginate(10);
+        return view('admins.mariage.listes',[
+            'demandeMariage'=> $demandeMariage
+        ]);
+    }
+
+
+
+    public function listesDemande_naissance(){
+
+        $ModelsDemandeActeNaissance=DemandeActeNaissance::paginate(10);
+        return view('admins.naissance.listes',[
+            'ModelsDemandeActeNaissance'=> $ModelsDemandeActeNaissance
+        ]);
+    }
+
+    public function details_mariage(){
+
+        $Demande=DemandeMariage::paginate(10);
+        return view('admins.mariage.details',[
+            'Demande'=> $Demande
+        ]);
+    }
+
+
+    public function details_naissance($id){
+
+
+
+        $Models=DemandeActeNaissance::find($id);
+        if(!$Models){
+            toastr()->error('Erreur dans l envoie des données');
+            return back();
+        }
+        $demandeAll =DocumentAdmin::all();
+
+        return view('admins.naissance.details',[
+            'Models'=> $Models,
+            'demandeAll'=>$demandeAll
+        ]);
+    }
+
+
+    public function listesDemande_deces(){
+
+        $DemandeDecesModel=DemandeDecesModel::paginate(10);
+        return view('admins.deces.listes',[
+            'DemandeDecesModel'=>$DemandeDecesModel
+        ]);
+    }
+
+    public function details_deces(){
+
+        $DecesModel=DemandeDecesModel::paginate(10);
+        return view('admins.deces.details',[
+            'DecesModel'=>$DecesModel
+        ]);
+    }
 
     public function update_account(){
         return view('Admin.actions.update_account');
     }
 
     public function ajout_document(){
-        return view("Admin.actions.ajouter_document");
+        return view("admins.document");
     }
 
 
@@ -85,6 +145,11 @@ class AdminController extends Controller
     }
 
 
+    public function addUsers(){
+
+        return view('admins.user');
+    }
+
     public function doLogin(Request $request){
         $request->validate([
           'emailOrTel'=>'required',
@@ -105,12 +170,14 @@ class AdminController extends Controller
         $user->status='on';
         $user->save();
 
+        toastr()->info('Bienvenue 🖐');
+
         return redirect()->route('home.admin');
     }
 
     public function login(){
 
-        return view('Admin.login');
+        return view('Admins.login');
     }
     public function detailsADeces($id){
 
@@ -176,6 +243,10 @@ class AdminController extends Controller
                        "titre"=> "required",
                        "doc"=> "required|mimes:pdf",
                        "numer_registre"=> "required"
+        ],[
+            'titre.required'=>'Le titre est requis',
+            'doc.mimes'=>'le Document doit etre de type pdf ',
+            'numer_registre'=>'Le numéro de registre est requis'
         ]);
 
 
@@ -265,8 +336,13 @@ class AdminController extends Controller
         $demandeMariage=DemandeMariage::count();
         $userConnecte=User::where('status','on')->get();
 
-        return view("Admin.actions.users",compact("userAll","demandeNaissance","demandeMariage",'demandeDeces','userConnecte'));
+        return view("admins.users.listes",compact("userAll","demandeNaissance","demandeMariage",'demandeDeces','userConnecte'));
 
+    }
+
+
+    public function update_users(){
+        return view('admins.update');
     }
 
 
@@ -372,8 +448,7 @@ class AdminController extends Controller
         ],[
             'password.required'=>'Le mots de passe est requis',
            'password_confirm.required'=>'Le mot de passe de confirmation est requis',
-
-
+           'emailOrTel.required'=>'L email est requis dans le formulaire',
         ]);
         $user =User::where('email',$usersRequest->emailOrTel)->orWhere('tel',$usersRequest->emailOrTel)->first();
         if(!$user){
@@ -396,7 +471,7 @@ class AdminController extends Controller
 
     public function adminPasswordReset(){
 
-        return view('Admin.reset_password');
+        return view('admins.reset_password');
     }
 
 }

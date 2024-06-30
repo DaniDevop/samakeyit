@@ -27,7 +27,7 @@ Route::get('/login-actions',function(){
 
 
 Route::post('/add_users_account',[UtilisateurController::class,'store'])->name('store.users');
-Route::post('/login-users',[UtilisateurController::class,'loginUsers'])->name('login.Users');
+Route::post('/login-users',[UtilisateurController::class,'loginUsers'])->name('login.Users.doLogin');
 Route::get('/',[UtilisateurController::class,'home'])->name('home.users');
 
 // Users Controlles
@@ -41,7 +41,7 @@ Route::middleware(['auth.admin'])->group(function () {
     Route::get('/logoutUsers',[AdminController::class,'logout'])->name('logout.authentification');
 
     Route::get('/admin-users',[AdminController::class,'index'])->name('home.admin');
-    Route::get('/admin_add_users',[AdminController::class,'users'])->name('add.users');
+    Route::get('/admin_add_users',[AdminController::class,'users'])->name('listes.users');
     Route::post('/admin_new_users',[AdminController::class,'create'])->name('create.users');
     Route::get('/admin_ajout_document',[AdminController::class,'ajout_document'])->name('ajout.document');
     Route::post('/admin_new_document',[AdminController::class,'addDocument'])->name('add.Document');
@@ -55,9 +55,25 @@ Route::middleware(['auth.admin'])->group(function () {
 
     Route::get('/update-account',[AdminController::class,'update_account'])->name('update_.ccount.users');
 
-    Route::post('/update_account_admin',[AdminController::class,'update_account_users'])->name('update.account.users');
+    Route::post('/update_account_admin.inforùations',[AdminController::class,'update_account_users'])->name('update.informations');
     Route::post('/update_password_admin',[AdminController::class,'update_password_admin'])->name('update.password.admin');
     Route::get('/delete_users_account/{id}',[AdminController::class,'deleteUsers'])->name('delete.Users');
+
+    Route::post('/update_account_admin.inforùations',[AdminController::class,'update_account_users'])->name('update.informations');
+
+
+    Route::get('/listesDemandeMariage',[AdminController::class,'listesDemande_mariage'])->name('listes.Demande_mariage');
+    Route::get('/details_DemandeMariage/{id}',[AdminController::class,'details_mariage'])->name('details.users_mariage');
+
+    Route::get('/listesDecesDema',[AdminController::class,'listesDemande_deces'])->name('listes.Demande_deces');
+    Route::get('/detailsDecesDemande/{id}',[AdminController::class,'details_deces'])->name('details.Demande_deces');
+
+    Route::get('/listesNaissance',[AdminController::class,'listesDemande_naissance'])->name('listesDemande.users.naissance');
+
+
+    Route::get('/details_naissance/{id}',[AdminController::class,'details_naissance'])->name('details_naissance.users');
+    Route::get('/update_users_account',[AdminController::class,'update_users'])->name('update.account.users.page');
+    Route::get('/add_account_users',[AdminController::class,'addUsers'])->name('addUsers.application');
 
 });
 

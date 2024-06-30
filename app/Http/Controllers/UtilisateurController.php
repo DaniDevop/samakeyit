@@ -20,17 +20,17 @@ class UtilisateurController extends Controller
 
 
     public function home(){
-        return view('Utilisateur.index');
+        return view('user.home');
 
     }
 
     public function login(){
-        return view('Utilisateur.login');
+        return view('user.login');
 
     }
 
     public function signup(){
-        return view('Utilisateur.inscription');
+        return view('user.register');
 
     }
 
@@ -161,7 +161,7 @@ class UtilisateurController extends Controller
 
     public function demandeActeMariage(DemandeMariageRequest $demandeActeNaissance){
 
-       
+
         $demande=new DemandeMariage();
         $demande->numero_registre_mariage=$demandeActeNaissance->numero_registre_mariage;
         $demande->centre=$demandeActeNaissance->centre;
