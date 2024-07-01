@@ -5,7 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- Website Title -->
-    <title>John Doe - Professional web designer and photographer</title>
     <!-- Bootstrap -->
     <link href="{{asset('/home/assets/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
 	<!-- Font-Awesome -->
@@ -61,18 +60,15 @@
               <div class="row">
                 <div class="col-md-8 col-md-offset-1 inner">
                   <h1 class="animated fadeInDown">
-                    Un peule<span style="color:#E04343;"></span>un but<br/>
-                    <span>une<span style="color:#FFE800">fo</span>is</span>
+                    Un peuple<span style="color:#E04343;"></span><br>un but<br/>
+                    <span>une<span style="color:#FFE800">fo</span>i</span>
                   </h1><!-- Title -->
-                  <h3 class="animated fadeInUp delay-05s"><span class="rotate">Web Designer,Photographer,3d Artist</span></h3><!-- Text Rotator -->
                 </div>
               </div>
 			  <!-- Learn More Button -->
               <div class="row">
                 <div class="col-md-6 col-md-offset-3 text-center">
-                  <a href="#about" class="scrollto wow fadeInUp delay-5s ">
-			            <p>SEE MORE</p>
-			            <p class="scrollto--arrow"><img src="" alt="scroll down arrow"></p>
+           
 			        </a>
                 </div>
               </div>
